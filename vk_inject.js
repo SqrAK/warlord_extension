@@ -3,6 +3,11 @@ function isProfile(){
     var profile_div = document.getElementById('profile');
     return profile_div !== null;
 }
+//'<div class="profile_info_block clear_fix">' +
+// '<div class="profile_info_header_wrap">' +
+//     '<span class="profile_info_header">Warlord Justifier</span>' +
+// '</div>' +
+//'</div>' +
 
 function addWarlordInfo(){
     var doc  = document.getElementById('warlord_justifier');
@@ -11,10 +16,7 @@ function addWarlordInfo(){
         var link = '<a id="warlord_clicker" class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">WARLORD script by[KCW]</span><span class="profile_label_less" id="hide_span" style="display:none">WARLORD script by[KCW]</span></a>';
         profile_full.innerHTML += link + 
             '<div class="profile_info" id="warlord_justifier" style="display:none">' +
-                '<div class="profile_info_block clear_fix">' +
-                    '<div class="profile_info_header_wrap">' +
-                        '<span class="profile_info_header">Warlord Justifier</span>' +
-                    '</div>' +
+                '<div id="warlord_block">' +
                     '<img id="warlord_loader" src="' + chrome.runtime.getURL('loader.gif') +'">' +
                 '</div>' +
             '</div>';
@@ -69,8 +71,6 @@ function getWarlordInfo(server_address, user_id){
         console.log(server_response);
         var loader = document.getElementById('warlord_loader');
         loader.style.display = 'none';
-        var warlord_justifier = document.getElementById('warlord_justifier');
-        warlord_justifier.innerHTML = '<div id="warlord_block"></div>';
         var warlord_justifier_main_block = document.getElementById('warlord_block');
         if ((responseText != null) && (server_response != null)) {
             if ('error' in server_response) {
@@ -84,15 +84,15 @@ function getWarlordInfo(server_address, user_id){
                 console.log(server_response.statuses);
                 console.log(server_response.profiles);
                 console.log(server_response.profiles[0].id_status);
-                createInfoRow(warlord_justifier_main_block, 'Тип:', '<img src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
+                createInfoRow(warlord_justifier_main_block, 'Тип:', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
                 createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
             }
         } else {
             console.log('internal server error');
-            createInfoRow(warlord_justifier, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
+            createInfoRow(warlord_justifier__main_block, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
         }
-        warlord_justifier = document.getElementById('warlord_justifier');
-        warlord_justifier.innerHTML += '<a class="profile_more_info_link" href="https://vk.com/justice_warlord"><span class="profile_label_more">Конституционный Суд WARLORD [KCW]</span></a>'
+        createInfoRow(warlord_justifier_main_block, 'Группа:', '<a href="https://vk.com/justice_warlord"><span>Конституционный Суд WARLORD [KCW]</span></a>');
+        createInfoRow(warlord_justifier_main_block, 'Благодарности:', '<a href="#"><span>Спонсоры</span></span></a>');
     });
 }
 
