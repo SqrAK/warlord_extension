@@ -33,7 +33,7 @@ function createInfoRow(parent, label, inner_text){
 }
 
 function createProofLink(link, number){
-    return '<a href=' + link.url + '>Доказательство ' + number + '</a>';
+    return '<a  target="_blank" href=' + link.url + '>Доказательство ' + number + '</a>';
 }
 
 function createProofLinks(links){
@@ -76,7 +76,7 @@ function getWarlordInfo(server_address, user_id){
             if ('error' in server_response) {
                 //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
                 if(server_response.error == 'unknown_profile'){
-                    createInfoRow(warlord_justifier_main_block, 'Тип:', '<span>Непроверенный пользователь</span>');
+                    createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');
                 }
             }
             else {
@@ -84,15 +84,15 @@ function getWarlordInfo(server_address, user_id){
                 console.log(server_response.statuses);
                 console.log(server_response.profiles);
                 console.log(server_response.profiles[0].id_status);
-                createInfoRow(warlord_justifier_main_block, 'Тип:', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
+                createInfoRow(warlord_justifier_main_block, 'Статус (' + server_response.statuses[server_response.profiles[0].id_status].caption + '):', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
                 createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
             }
         } else {
             console.log('internal server error');
             createInfoRow(warlord_justifier__main_block, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
         }
-        createInfoRow(warlord_justifier_main_block, 'Группа:', '<a href="https://vk.com/justice_warlord"><span>Конституционный Суд WARLORD [KCW]</span></a>');
-        createInfoRow(warlord_justifier_main_block, 'Благодарности:', '<a href="#"><span>Спонсоры</span></span></a>');
+        createInfoRow(warlord_justifier_main_block, 'Группа:', '<a target="_blank" href="https://vk.com/justice_warlord"><span>Конституционный Суд WARLORD [KCW]</span></a>');
+        createInfoRow(warlord_justifier_main_block, 'Благодарности:', '<a target="_blank" href="https://vk.com/gim133931816"><span>Спонсоры</span></span></a>');
     });
 }
 
