@@ -84,7 +84,7 @@ function getWarlordInfo(server_address, user_id){
                 console.log(server_response.statuses);
                 console.log(server_response.profiles);
                 console.log(server_response.profiles[0].id_status);
-                createInfoRow(warlord_justifier_main_block, 'Статус (' + server_response.statuses[server_response.profiles[0].id_status].caption + '):', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
+                createInfoRow(warlord_justifier_main_block, 'Статус:', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
                 createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
             }
         } else {
