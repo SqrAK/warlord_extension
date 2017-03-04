@@ -6,3 +6,19 @@
 	display: block;
 	margin: 0 auto;
 }
+
+#warlord_block{
+    min-width: 100px;
+    border: 1px solid #edeef0;
+    height: 100px;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: -5px;
+}
+
+#warlord_clicker{
+    background-color: #2a5885;
+    color: #FFFFFF;
+}

@@ -1,82 +1,98 @@
 function isProfile(){
-	var profile_div = document.getElementById('profile');
-	return profile_div !== null;
+    var profile_div = document.getElementById('profile');
+    return profile_div !== null;
 }
 
 function addWarlordInfo(){
-	var doc  = document.getElementById('warlord_justifier');
-	if (isProfile() && (doc === null)){
-		var profile_full = document.getElementById('page_info_wrap');
-		var link = '<a class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">Показать</span><span class="profile_label_less" id="hide_span" style="display:none">Скрыть</span></a>';
-		profile_full.innerHTML += link + '<div class="profile_info" id="warlord_justifier" style="display:none"><div class="profile_info_block clear_fix"><div class="profile_info_header_wrap"><span class="profile_info_header">Warlord Justifier</span></div><img id="warlord_loader" src="' + chrome.runtime.getURL('loader.gif') +'"></div></div>';
+    var doc  = document.getElementById('warlord_justifier');
+    if (isProfile() && (doc === null)){
+        var profile_full = document.getElementById('page_info_wrap');
+        var link = '<a id="warlord_clicker" class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">WARLORD script by[KCW]</span><span class="profile_label_less" id="hide_span" style="display:none">WARLORD script by[KCW]</span></a>';
+        profile_full.innerHTML += link + 
+            '<div class="profile_info" id="warlord_justifier" style="display:none">' +
+                '<div class="profile_info_block clear_fix">' +
+                    '<div class="profile_info_header_wrap">' +
+                        '<span class="profile_info_header">Warlord Justifier</span>' +
+                    '</div>' +
+                    '<img id="warlord_loader" src="' + chrome.runtime.getURL('loader.gif') +'">' +
+                '</div>' +
+            '</div>';
         //<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Все ок!</span></div></div>
         chrome.storage.local.get(
             'server_address',
             loadInfo
         );
-	}
+    }
 }
 
 function createInfoRow(parent, label, inner_text){
-	parent.innerHTML += '<div class="clear_fix profile_info_row"><div class="label fl_l">' + label + '</div><div class="labeled">' + inner_text + '</div></div>';
+    parent.innerHTML += '<div class="clear_fix profile_info_row"><div class="label fl_l">' + label + '</div><div class="labeled">' + inner_text + '</div></div>';
 }
 
 function createProofLink(link){
-	return '<a href=' + link.url + '>' + link.caption + '</a>';
+    return '<a href=' + link.url + '>' + link.caption + '</a>';
 }
 
 function createProofLinks(links){
-	var links_str = '';
-	links.forEach(function(link, i, links){
-		if (links_str == ''){
-			links_str = createProofLink(link);
-		}
-		else
-		{
-			links_str = links_str + ', ' + createProofLink(link);
-		}
-	});
-	return links_str;
+    var links_str = '';
+    links.forEach(function(link, i, links){
+        if (links_str == ''){
+            links_str = createProofLink(link);
+        }
+        else
+        {
+            links_str = links_str + ', ' + createProofLink(link);
+        }
+    });
+    return links_str;
 }
 
 function createProofList(parent, proofs, statuses){
-	console.log('proofs:');
-	console.log(proofs);
-	for(key in proofs){
-		createInfoRow(parent, statuses[key].caption + ':', createProofLinks(proofs[key]));
-	};
+    console.log('proofs:');
+    console.log(proofs);
+    for(key in proofs){
+        if (key in statuses) {
+            createInfoRow(parent, statuses[key].caption + ':', createProofLinks(proofs[key]));
+        }
+    };
 }
 
 function getWarlordInfo(server_address, user_id){
-	chrome.runtime.sendMessage({
-		method: 'GET',
-		action: 'xhttp',
-		url: 'http://' + server_address + '/profiles/' + user_id
-	}, function(responseText) {
-		//console.log(responseText);
-		var server_response = JSON.parse(responseText);
-		console.log(server_response);
-		var loader = document.getElementById('warlord_loader');
-		loader.style.display = 'none';
-		var warlord_justifier = document.getElementById('warlord_justifier');
-		if ((responseText != null) && (server_response != null)) {
-			if (server_response.profiles[0].id_status === undefined) {
-				//warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
-				createInfoRow(warlord_justifier, 'Тип:', '<span>Непроверенный пользователь</span>');
-			}
-			else {
-				//warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
-				console.log(server_response.statuses);
-				console.log(server_response.profiles);
-				console.log(server_response.profiles[0].id_status);
-				createInfoRow(warlord_justifier, 'Тип:', '<span>' + server_response.statuses[server_response.profiles[0].id_status].caption + '</span>');
-				createProofList(warlord_justifier, server_response.profiles[0].proofs, server_response.statuses);
-			}
-		} else {
-			console.log('internal server error');
-			createInfoRow(warlord_justifier, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
-		}
-	});
+    chrome.runtime.sendMessage({
+        method: 'GET',
+        action: 'xhttp',
+        url: 'http://' + server_address + '/profiles/' + user_id
+    }, function(responseText) {
+        //console.log(responseText);
+        var server_response = JSON.parse(responseText);
+        console.log(server_response);
+        var loader = document.getElementById('warlord_loader');
+        loader.style.display = 'none';
+        var warlord_justifier = document.getElementById('warlord_justifier');
+        warlord_justifier.innerHTML = '<div id="warlord_block"></div>';
+        var warlord_justifier_main_block = document.getElementById('warlord_block');
+        if ((responseText != null) && (server_response != null)) {
+            if ('error' in server_response) {
+                //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
+                if(server_response.error == 'unknown_profile'){
+                    createInfoRow(warlord_justifier_main_block, 'Тип:', '<span>Непроверенный пользователь</span>');
+                }
+            }
+            else {
+                //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
+                console.log(server_response.statuses);
+                console.log(server_response.profiles);
+                console.log(server_response.profiles[0].id_status);
+                createInfoRow(warlord_justifier_main_block, 'Тип:', '<img src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
+                createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
+            }
+        } else {
+            console.log('internal server error');
+            createInfoRow(warlord_justifier, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
+        }
+        warlord_justifier = document.getElementById('warlord_justifier');
+        warlord_justifier.innerHTML += '<a class="profile_more_info_link" href="https://vk.com/justice_warlord"><span class="profile_label_more">Конституционный Суд WARLORD [KCW]</span></a>'
+    });
 }
 
 function getVKUserInfo(server_address, user_id){
@@ -91,8 +107,8 @@ function getVKUserInfo(server_address, user_id){
 
     xhr.onerror = function(){
         console.log('Error while accept to vk api: ' + this.status);
-		var warlord_justifier = document.getElementById('warlord_justifier');
-		createInfoRow(warlord_justifier, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
+        var warlord_justifier = document.getElementById('warlord_justifier');
+        createInfoRow(warlord_justifier, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
     };
     xhr.send();
 }
@@ -116,7 +132,7 @@ var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 var s = document.createElement('script');
 s.src = chrome.extension.getURL('utils.js');
 s.onload = function() {
-	this.remove();
+    this.remove();
 };
 document.head.appendChild(s);
 
