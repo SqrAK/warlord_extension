@@ -1,3 +1,4 @@
+
 function isProfile(){
     var profile_div = document.getElementById('profile');
     return profile_div !== null;
