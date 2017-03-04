@@ -32,19 +32,19 @@ function createInfoRow(parent, label, inner_text){
     parent.innerHTML += '<div class="clear_fix profile_info_row"><div class="label fl_l">' + label + '</div><div class="labeled">' + inner_text + '</div></div>';
 }
 
-function createProofLink(link){
-    return '<a href=' + link.url + '>' + link.caption + '</a>';
+function createProofLink(link, number){
+    return '<a href=' + link.url + '>Доказательство ' + number + '</a>';
 }
 
 function createProofLinks(links){
     var links_str = '';
     links.forEach(function(link, i, links){
         if (links_str == ''){
-            links_str = createProofLink(link);
+            links_str = createProofLink(link, i + 1);
         }
         else
         {
-            links_str = links_str + ', ' + createProofLink(link);
+            links_str = links_str + ', ' + createProofLink(link, i + 1);
         }
     });
     return links_str;
