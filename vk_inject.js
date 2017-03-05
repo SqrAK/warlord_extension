@@ -75,7 +75,7 @@ function getWarlordInfo(server_address, user_id){
                 if ('error' in server_response) {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
                     if (server_response.error == 'unknown_profile') {
-                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');
+                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Неизвестный пользователь</span>');
                     }
                 }
                 else {
