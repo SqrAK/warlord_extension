@@ -10,9 +10,7 @@
 #warlord_block{
     min-width: 100px;
     border: 1px solid #5d80a6;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
     margin-top: -11px;
 }
 
