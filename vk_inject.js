@@ -76,8 +76,7 @@ function getWarlordInfo(server_address, user_id){
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
                     if (server_response.error == 'unknown_profile') {
                         warlord_justifier_main_block.innerHTML = '';
-                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');
-                    }
+                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');                    }
                 }
                 else {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
