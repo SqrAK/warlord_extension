@@ -106,8 +106,13 @@ function getVKUserInfo(server_address, user_id){
 
     xhr.onload = function() {
         var server_response = JSON.parse(this.responseText);
-        user_id_str = server_response.response[0].id;
-        getWarlordInfo(server_address, user_id_str);
+        if ((server_response !== undefined) && (this.responseText !== undefined)) {
+            user_id_str = server_response.response[0].id;
+            getWarlordInfo(server_address, user_id_str);
+        } else {
+            var warlord_justifier_main_block = document.getElementById('warlord_block');
+            createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
+        }
     };
 
     xhr.onerror = function(){
