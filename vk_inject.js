@@ -110,12 +110,16 @@ function getVKUserInfo(server_address, user_id){
             user_id_str = server_response.response[0].id;
             getWarlordInfo(server_address, user_id_str);
         } else {
+            var loader = document.getElementById('warlord_loader');
+            loader.style.display = 'none';
             var warlord_justifier_main_block = document.getElementById('warlord_block');
             createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
         }
     };
 
     xhr.onerror = function(){
+        var loader = document.getElementById('warlord_loader');
+        loader.style.display = 'none';
         console.log('Error while accept to vk api: ' + this.status);
         var warlord_justifier_main_block = document.getElementById('warlord_block');
         createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
