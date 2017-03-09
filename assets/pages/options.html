@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My Test Extension Options</title>
-	</head>
-	<body>
+<head>
+    <title>Warlord script options</title>
+    <link href="../styles/options.css" rel="stylesheet">
+</head>
+<body>
+    <div class="groups-wrapper">
+        <div class="group clearfix">
+            <h1>Настройки сервера</h1>
 
-		<label>
-			Server address:
-		  	<input type="text" id="server_address">
-		</label>
+            <div class="option-row clearfix">
+                <div class="option-caption"><label for="server_address">Адрес сервера:</label></div>
+                <div class="option-value"><input type="text" id="server_address" placeholder="Адрес сервера"></div>
+            </div>
 
-		<div id="status"></div>
-		<button id="save">Save</button>
+            <!--<div class="option-row clearfix">
+                <div class="option-caption"><label for="access_key">Ключ доступа:</label></div>
+                <div class="option-value"><input type="text" id="access_key" placeholder="Ключ доступа"></div>
+            </div>-->
+        </div>
 
-		<script src="../../options.js"></script>
-	</body>
+        <button id="save" class="pull-left">Сохранить</button>
+        <div id="status" class="status-popup pull-right"></div>
+    </div>
+
+    <!--<label>
+        Server address:
+        <input type="text" id="server_address_">
+    </label>!-->
+
+    <script src="../../options.js"></script>
+</body>
 </html>
