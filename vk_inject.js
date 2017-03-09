@@ -75,14 +75,15 @@ function getWarlordInfo(server_address, user_id){
                 if ('error' in server_response) {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
                     if (server_response.error == 'unknown_profile') {
-                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Неизвестный пользователь</span>');
-                    }
+                        warlord_justifier_main_block.innerHTML = '';
+                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');                    }
                 }
                 else {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
                     console.log(server_response.statuses);
                     console.log(server_response.profiles);
                     console.log(server_response.profiles[0].id_status);
+                    warlord_justifier_main_block.innerHTML = '';
                     createInfoRow(warlord_justifier_main_block, 'Статус:', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
                     createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
                 }
@@ -105,11 +106,20 @@ function getVKUserInfo(server_address, user_id){
 
     xhr.onload = function() {
         var server_response = JSON.parse(this.responseText);
-        user_id_str = server_response.response[0].id;
-        getWarlordInfo(server_address, user_id_str);
+        if ((server_response !== undefined) && (this.responseText !== undefined)) {
+            user_id_str = server_response.response[0].id;
+            getWarlordInfo(server_address, user_id_str);
+        } else {
+            var loader = document.getElementById('warlord_loader');
+            loader.style.display = 'none';
+            var warlord_justifier_main_block = document.getElementById('warlord_block');
+            createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
+        }
     };
 
     xhr.onerror = function(){
+        var loader = document.getElementById('warlord_loader');
+        loader.style.display = 'none';
         console.log('Error while accept to vk api: ' + this.status);
         var warlord_justifier_main_block = document.getElementById('warlord_block');
         createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере VK. Проверьте подключение к интернету или свяжитесь с администрацией.</span>');
