@@ -4,16 +4,16 @@
 	"name": "Warlord Justifier",
 	"description": "This extension shows whether person is good or bad",
 	"version": "1.0",
-	"options_page": "options.html",
+	"options_page": "assets/pages/options.html",
 
-	"icons": {"16": "icon.png"},
+	"icons": {"16": "assets/img/icon.png"},
 
 	"permissions": ["tabs", "storage" , "http://*/*", "https://*/*"	],
 
     "content_scripts": [{
 		"matches": ["*://vk.com/*"],
 		"js": ["vk_inject.js"],
-		"css": ["vk_styles.css"],
+		"css": ["assets/styles/vk_styles.css"],
 		"run_at": "document_end"
 	}],
 
@@ -24,6 +24,6 @@
 
     "web_accessible_resources": [
         "utils.js",
-        "loader.gif"
+        "assets/img/loader.gif"
     ]
 }
