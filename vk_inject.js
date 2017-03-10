@@ -88,6 +88,8 @@ function getWarlordInfo(server_address, user_id){
                     createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
                 }
             } else {
+                console.log(responseText);
+                console.log(server_response);
                 console.log('internal server error');
                 createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
             }
