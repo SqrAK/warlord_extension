@@ -10,6 +10,7 @@ function isProfile(){
 //'</div>' +
 
 function addWarlordInfo(){
+    console.log('fff');
     var doc  = document.getElementById('warlord_justifier');
     if (isProfile() && (doc === null)){
         var profile_full = document.getElementById('page_info_wrap');
@@ -158,6 +159,6 @@ s.onload = function() {
 document.head.appendChild(s);
 
 addWarlordInfo();
-var focusedOn = document.getElementById('page_header_wrap');
+var focusedOn = document.body;
 var pageObserver = new MutationObserver(addWarlordInfo);
 pageObserver.observe(focusedOn, {characterData: false, childList: true, subtree: true});
