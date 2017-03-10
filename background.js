@@ -162,6 +162,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, callback) {
         var method = request.method ? request.method.toUpperCase() : 'GET';
 
         xhttp.onload = function() {
+            console.log(xhttp);
             console.log('correct_response');
             callback(xhttp.responseText);
         };
