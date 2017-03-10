@@ -132,14 +132,19 @@ function getVKUserInfo(server_address, user_id){
 function loadInfo(items){
     var user_id = window.location.href;
     var user_id_str = user_id.substr(user_id.lastIndexOf('/') + 1);
+    var server_address = items.server_address;
+    if ((server_address === undefined) || (server_address === null))
+    {
+        server_address = 'warlord-jusifier.herokuapp.com';
+    }
     if ((user_id_str.indexOf('id') == 0) && (Number(user_id_str.substr(2)) != 0))
     {
         user_id_str = user_id_str.substr(2);
-        getWarlordInfo(items.server_address, user_id_str);
+        getWarlordInfo(server_address, user_id_str);
     }
     else
     {
-        getVKUserInfo(items.server_address, user_id_str);
+        getVKUserInfo(server_address, user_id_str);
     }
 }
 
