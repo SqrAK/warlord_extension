@@ -14,7 +14,7 @@ function addWarlordInfo(){
     var doc  = document.getElementById('warlord_justifier');
     if (isProfile() && (doc === null)){
         var profile_full = document.getElementById('page_info_wrap');
-        var link = '<a id="warlord_clicker" class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">WARLORD script by[KCW]</span><span class="profile_label_less" id="hide_span" style="display:none">WARLORD script by[KCW]</span></a>';
+        var link = '<a id="warlord_clicker" class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">WARLORD script by [KCW]</span><span class="profile_label_less" id="hide_span" style="display:none">WARLORD script by [KCW]</span></a>';
         profile_full.innerHTML += link + 
             '<div class="profile_info" id="warlord_justifier" style="display:none">' +
                 '<div id="warlord_block">' +
