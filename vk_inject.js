@@ -16,16 +16,13 @@ function addWarlordInfo(){
         var profile_full = document.getElementById('page_info_wrap');
         var link = '<a id="warlord_clicker" class="profile_more_info_link" onclick="toggleWarlord(this)"><span class="profile_label_more" id="show_span">WARLORD script by [KCW]</span><span class="profile_label_less" id="hide_span" style="display:none">WARLORD script by [KCW]</span></a>';
         profile_full.innerHTML += link + 
-            '<div class="profile_info" id="warlord_justifier" style="display:none">' +
-                '<div id="warlord_block">' +
-                    '<img id="warlord_loader" src="' + chrome.runtime.getURL('assets/img/loader.gif') +'">' +
-                '</div>' +
-            '</div>';
+        '<div class="profile_info" id="warlord_justifier" style="display:none">' +
+            '<div id="warlord_block">' +
+                '<img id="warlord_loader" src="' + chrome.runtime.getURL('assets/img/loader.gif') +'">' +
+            '</div>' +
+        '</div>';
         //<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Все ок!</span></div></div>
-        chrome.storage.local.get(
-            'server_address',
-            loadInfo
-        );
+        chrome.storage.local.get('server_address', loadInfo);
     }
 }
 
@@ -136,7 +133,7 @@ function loadInfo(items){
     var server_address = items.server_address;
     if ((server_address === undefined) || (server_address === null))
     {
-        server_address = 'warlord-jusifier.herokuapp.com';
+        server_address = 'warlord-justifier.herokuapp.com';
     }
     if ((user_id_str.indexOf('id') == 0) && (Number(user_id_str.substr(2)) != 0))
     {
