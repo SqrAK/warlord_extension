@@ -74,7 +74,7 @@ function getWarlordInfo(server_address, user_id){
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Непроверенный пользователь</span></div></div>';
                     if (server_response.error == 'unknown_profile') {
                         warlord_justifier_main_block.innerHTML = '';
-                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Непроверенный пользователь</span>');                    }
+                        createInfoRow(warlord_justifier_main_block, 'Статус:', '<span>Неизвестный пользователь</span>');                    }
                 }
                 else {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
@@ -96,7 +96,7 @@ function getWarlordInfo(server_address, user_id){
             createInfoRow(warlord_justifier_main_block, 'Ошибка:', '<span>Произошла ошибка на сервере Warlord Justifier. Проверьте адрес или свяжитесь с администрацией.</span>');
         }
         createInfoRow(warlord_justifier_main_block, 'Группа:', '<a target="_blank" href="https://vk.com/justice_warlord"><span>Конституционный Суд WARLORD [KCW]</span></a>');
-        createInfoRow(warlord_justifier_main_block, 'Благодарности:', '<a target="_blank" href="https://vk.com/gim133931816"><span>Спонсоры</span></span></a>');
+        createInfoRow(warlord_justifier_main_block, 'Благодарности:', '<a target="_blank" href="https://vk.com/topic-133931816_34920946"><span>Спонсоры</span></span></a>');
     });
 }
 
