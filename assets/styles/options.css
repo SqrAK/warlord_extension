@@ -1,0 +1,90 @@
+body{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    padding: 5px 9px;
+    width: 100%;
+    border: 1px solid #d3d9de;
+}
+
+label {
+    color: #656565;
+    display: block;
+    padding-top: 7px;
+    padding-right: 5px;
+    text-align: right;
+}
+
+button {
+    background: #5d80a6;
+    color: white;
+    border: 0;
+    padding: 7px 32px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.clearfix:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+
+
+
+.groups-wrapper{
+    width: 400px;
+    margin: 20px auto 0;
+
+    font-family: "Roboto", sans-serif;
+}
+
+.group{
+    border: 1px solid #5d80a6;
+    border-radius: 5px;
+}
+
+.group h1{
+    background-color: #5d80a6;
+    color: white;
+
+    font-weight: normal;
+    font-size: 15px;
+
+    margin: 0;
+    padding: 5px;
+}
+
+.group div.option-row{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 35px;
+}
+
+.group div.option-row .option-caption{
+    float: left;
+    width: 30%;
+}
+
+.group div.option-row .option-value{
+    float: right;
+    width: 70%;
+}
+
+.status-popup {
+    margin-top: 19px;
+    color: #656565;
+}
