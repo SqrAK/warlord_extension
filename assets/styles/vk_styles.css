@@ -1,0 +1,20 @@
+#warlord_justifier{
+    padding-top: 15px;
+}
+
+#warlord_loader{
+    display: block;
+    margin: 0 auto;
+}
+
+#warlord_block{
+    min-width: 100px;
+    border: 1px solid #5d80a6;
+    padding: 10px 20px;
+    margin-top: -11px;
+}
+
+#warlord_clicker{
+    background-color: #5d80a6;
+    color: #FFFFFF;
+}
