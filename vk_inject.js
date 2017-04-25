@@ -135,7 +135,7 @@ function loadInfo(items){
     {
         server_address = 'warlord-justifier.herokuapp.com';
     }
-    if ((user_id_str.indexOf('id') == 0) && (Number(user_id_str.substr(2)) != 0))
+    /*if ((user_id_str.indexOf('id') == 0) && (Number(user_id_str.substr(2)) != 0))
     {
         user_id_str = user_id_str.substr(2);
         getWarlordInfo(server_address, user_id_str);
@@ -143,7 +143,8 @@ function loadInfo(items){
     else
     {
         getVKUserInfo(server_address, user_id_str);
-    }
+    }*/
+    getVKUserInfo(server_address, user_id_str);
 }
 
 var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
