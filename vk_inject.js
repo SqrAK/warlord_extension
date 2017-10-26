@@ -3,14 +3,8 @@ function isProfile(){
     var profile_div = document.getElementById('profile');
     return profile_div !== null;
 }
-//'<div class="profile_info_block clear_fix">' +
-// '<div class="profile_info_header_wrap">' +
-//     '<span class="profile_info_header">Warlord Justifier</span>' +
-// '</div>' +
-//'</div>' +
 
 function addWarlordInfo(){
-    console.log('fff');
     var doc  = document.getElementById('warlord_justifier');
     if (isProfile() && (doc === null)){
         var profile_full = document.getElementById('page_info_wrap');
@@ -21,7 +15,6 @@ function addWarlordInfo(){
                 '<img id="warlord_loader" src="' + chrome.runtime.getURL('assets/img/loader.gif') +'">' +
             '</div>' +
         '</div>';
-        //<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>Все ок!</span></div></div>
         chrome.storage.local.get('server_address', loadInfo);
     }
 }
@@ -49,8 +42,6 @@ function createProofLinks(links){
 }
 
 function createProofList(parent, proofs, statuses){
-    console.log('proofs:');
-    console.log(proofs);
     for(key in proofs){
         if (key in statuses) {
             createInfoRow(parent, statuses[key].caption + ':', createProofLinks(proofs[key]));
@@ -78,9 +69,6 @@ function getWarlordInfo(server_address, user_id){
                 }
                 else {
                     //warlord_justifier.innerHTML += '<div class="profile_info"><div class="clear_fix profile_info_row"><div class="label fl_l">Тип:</div><div class="labeled"><span>' + server_response.id_status + '</span></div></div>';
-                    console.log(server_response.statuses);
-                    console.log(server_response.profiles);
-                    console.log(server_response.profiles[0].id_status);
                     warlord_justifier_main_block.innerHTML = '';
                     createInfoRow(warlord_justifier_main_block, 'Статус:', '<img width="64" height="64" title="' + server_response.statuses[server_response.profiles[0].id_status].caption + '" src="' + server_response.statuses[server_response.profiles[0].id_status].image_url + '">');
                     createProofList(warlord_justifier_main_block, server_response.profiles[0].proofs, server_response.statuses);
