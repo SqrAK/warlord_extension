@@ -90,7 +90,7 @@ function getWarlordInfo(server_address, user_id){
 
 function getVKUserInfo(server_address, user_id){
     var xhr = new XHR();
-    xhr.open('GET', 'https://api.vk.com/method/users.get?user_ids=' + user_id + '&v=5.62');
+    xhr.open('GET', 'https://api.vk.com/method/users.get?user_ids=' + user_id + '&access_token=5c9cf1845c9cf1845c9cf184305cfe338d55c9c5c9cf184066c5f1d5eb5d59bd366e988&v=5.74');
 
     xhr.onload = function() {
         var server_response = JSON.parse(this.responseText);
