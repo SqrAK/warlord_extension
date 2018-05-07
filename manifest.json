@@ -3,10 +3,10 @@
 
 	"name": "Warlord Justifier",
 	"description": "Хотите обменять свои вещи в игре Walord, но сомневаетесь в надеждности продавца? Это расширение может вам помочь!",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"options_page": "assets/pages/options.html",
 
-	"permissions": ["tabs", "storage" , "http://*/*", "https://*/*"	],
+	"permissions": ["tabs", "storage" , "http://vk.com/*", "https://vk.com/*"	],
 
     "content_scripts": [{
 		"matches": ["*://vk.com/*"],
